@@ -1,0 +1,14 @@
+{
+    "name": "donwi/pis-distributed-audio-conversion",
+    "description": "Distributed audio conversion over multiple servers (RPi in my case) using beanstalkd",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Don Wilson",
+            "email": "donwilson@gmail.com"
+        }
+    ],
+    "require": {
+        "pda/pheanstalk": "^3.1"
+    }
+}
