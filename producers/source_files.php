@@ -8,10 +8,12 @@
 	
 	/**
 	 * Get the desired output full path of the converted file. Returns false on error or if output file exists
-	 * @param string $filename Source filename
+	 * @param string $source_file Full source file path
 	 * @return string|false
 	 */
 	function getDesiredFilepath($source_file) {
+		$filename = basename($source_file);
+		
 		if(!preg_match("#(^|/)([0-9]+])\s+(.+?)\.(avi|mkv|wmv)$#si", $filename, $match)) {
 			return false;
 		}
