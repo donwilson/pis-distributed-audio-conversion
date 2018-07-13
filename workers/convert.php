@@ -18,6 +18,8 @@
 		while($job = $pheanstalk->reserve()) {
 			$data = json_decode($job->getData(), true);
 			
+			print_r($data);
+			
 			// sanity checks
 			if(empty($data['source']) || empty($data['output'])) {
 				// source not set or file doesn't exist
