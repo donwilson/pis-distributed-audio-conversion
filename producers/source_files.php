@@ -38,6 +38,8 @@
 		
 		foreach(Finder::findFiles("*.avi", "*.wmv", "*.mkv")->in(SOURCE_DIR) as $source_file => $file) {
 			if(false === ($output_file = getDesiredFilepath($source_file))) {
+				print "Failed to put ". $source_file ."\n";
+				
 				continue;
 			}
 			
