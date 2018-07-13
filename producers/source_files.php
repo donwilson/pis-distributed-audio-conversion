@@ -2,6 +2,7 @@
 	require_once(__DIR__ ."/../config.php");
 	
 	use Pheanstalk\Pheanstalk;
+	use Nette\Utils\Finder;
 	
 	/**
 	 * Get the desired output full path of the converted file. Returns false on error or if output file exists
