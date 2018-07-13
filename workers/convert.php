@@ -47,8 +47,8 @@
 				$data['attempts']++;
 			}
 			
-			$source_file = realpath($data['source']);
-			$output_file = realpath($data['output']);
+			$source_file = get_absolute_path($data['source']);
+			$output_file = get_absolute_path($data['output']);
 			
 			if($source_file === $output_file) {
 				// source file doesn't exist
@@ -80,14 +80,6 @@
 			if((SOURCE_DIR !== substr($source_file, 0, strlen(SOURCE_DIR))) || (DEST_DIR !== substr($output_file, 0, strlen(DEST_DIR)))) {
 				// either path is outside of pre-defined source/destination folders
 				print "One or both file paths for job #". $job->getId() ." resolve outside of pre-defined paths\n";
-				
-				print "source:   ". substr($source_file, 0, strlen(SOURCE_DIR)) ."\n";
-				print "expected: ". SOURCE_DIR ."\n";
-				
-				print "raw:      ". $output_file ."\n";
-				print "output:   ". substr($output_file, 0, strlen(DEST_DIR)) ."\n";
-				print "expected: ". DEST_DIR ."\n";
-				
 				
 				$pheanstalk->delete($job);
 				
