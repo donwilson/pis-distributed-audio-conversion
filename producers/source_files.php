@@ -4,6 +4,8 @@
 	use Pheanstalk\Pheanstalk;
 	use Nette\Utils\Finder;
 	
+	define('TUBE_CONVERT', "rpi-convert-files");
+	
 	/**
 	 * Get the desired output full path of the converted file. Returns false on error or if output file exists
 	 * @param string $filename Source filename
@@ -30,8 +32,19 @@
 	try {
 		$pheanstalk = new Pheanstalk(BEANSTALKD_HOST);
 		
-		foreach(Finder::findFiles("*.avi", "*.wmv", "*.mkv")->in(SOURCE_DIR) as $key => $file) {
-			print $key ."\n";
+		if(!$pheanstalk->getConnection()->isServiceListening()) {
+			throw new Exception("beanstalkd server not available");
+		}
+		
+		foreach(Finder::findFiles("*.avi", "*.wmv", "*.mkv")->in(SOURCE_DIR) as $source_file => $file) {
+			if(false === ($output_file = getDesiredFilepath($source_file))) {
+				continue;
+			}
+			
+			$pheanstalk->useTube(TUBE_CONVERT)->put(json_encode([
+				'source' => $source_file,
+				'output' => $output_file,
+			]));
 		}
 	} catch(Exception $e) {
 		die("Error (line ". $e->getLine() ."): ". $e->getMessage() ."\n");
