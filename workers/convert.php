@@ -79,6 +79,13 @@
 				// either path is outside of pre-defined source/destination folders
 				print "One or both file paths for job #". $job->getId() ." resolve outside of pre-defined paths\n";
 				
+				print "source:   ". substr($source_file, 0, strlen(SOURCE_DIR)) ."\n";
+				print "expected: ". SOURCE_DIR ."\n";
+				
+				print "output:   ". substr($output_file, 0, strlen(DEST_DIR)) ."\n";
+				print "expected: ". DEST_DIR ."\n";
+				
+				
 				$pheanstalk->delete($job);
 				
 				continue;
