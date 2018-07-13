@@ -11,8 +11,8 @@
 	 * @param string $filename Source filename
 	 * @return string|false
 	 */
-	function getDesiredFilepath($filename) {
-		if(!preg_match("#^([0-9]+])\s+(.+?)\.(avi|mkv|wmv)$#si", $filename, $match)) {
+	function getDesiredFilepath($source_file) {
+		if(!preg_match("#(^|/)([0-9]+])\s+(.+?)\.(avi|mkv|wmv)$#si", $filename, $match)) {
 			return false;
 		}
 		
