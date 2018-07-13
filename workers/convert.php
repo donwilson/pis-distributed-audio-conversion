@@ -82,6 +82,7 @@
 				print "source:   ". substr($source_file, 0, strlen(SOURCE_DIR)) ."\n";
 				print "expected: ". SOURCE_DIR ."\n";
 				
+				print "raw:      ". $output_file ."\n";
 				print "output:   ". substr($output_file, 0, strlen(DEST_DIR)) ."\n";
 				print "expected: ". DEST_DIR ."\n";
 				
