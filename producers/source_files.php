@@ -30,7 +30,7 @@
 	try {
 		$pheanstalk = new Pheanstalk(BEANSTALKD_HOST);
 		
-		foreach(Finder::findFiles("*.avi", "*.wmv", "*.mkv") as $key => $file) {
+		foreach(Finder::findFiles("*.avi", "*.wmv", "*.mkv")->in(SOURCE_DIR) as $key => $file) {
 			print $key ."\n";
 		}
 	} catch(Exception $e) {
