@@ -9,6 +9,8 @@
         }
     ],
     "require": {
-        "pda/pheanstalk": "^3.1"
+        "pda/pheanstalk": "^3.1",
+        "tivie/command": "^0.2.2",
+        "nette/finder": "^2.4"
     }
 }
